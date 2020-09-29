@@ -12,16 +12,16 @@
                 folhaDesenho = document.getElementById("folha");
                 areaDesenho = folhaDesenho.getContext("2d");
 
-                larguraCampo =600;
+                larguraCampo = 600;
                 alturaCampo = 500;
 
                 posicaoBolaX = posicaoBolaY = 500;
-                velocidadeBolaX = 5;
-                velocidadeBolaY = 5;            
+                velocidadeBolaX = 8;
+                velocidadeBolaY = 8;            
 
                 espessuraRede = 5;
                 diametroBola = 10;
-                larguraRaquete = 10;
+                larguraRaquete = 11;
                 alturaRaquete = 150;
                 efeitoRaquete = 0.3;
 
@@ -52,11 +52,11 @@
                 areaDesenho.fillRect(larguraCampo / 2 + espessuraRede / 2, 0, espessuraRede, alturaCampo);
 
                 //raquete #1
-                areaDesenho.fillStyle = "#ffffff";
+                areaDesenho.fillStyle = "#FF7F50";
                 areaDesenho.fillRect(0, posicaoRaquete1, larguraRaquete, alturaRaquete);
 
                 //raquete #2
-                areaDesenho.fillStyle = "#ffffff";
+                areaDesenho.fillStyle = "#FF7F50";
                 areaDesenho.fillRect(larguraCampo - larguraRaquete, posicaoRaquete2, larguraRaquete, alturaRaquete);
 
                 //bola do jogo
@@ -64,10 +64,12 @@
                 areaDesenho.fillRect(posicaoBolaX - diametroBola / 2, posicaoBolaY - diametroBola / 2, diametroBola, diametroBola);
 
                 //Placar Jogador
-                areaDesenho.fillText("Jogador - " + placarJogador1 + " pontos", 100, 100)
+                areaDesenho.fillStyle = "#ffffff";
+                areaDesenho.font="20px Georgia";
+                areaDesenho.fillText("Jogador - " + placarJogador1 + " pontos", 75, 60)
 
                 //Placar Computador
-                areaDesenho.fillText("Computador - " + placarJogador2 + " pontos", larguraCampo - 200, 100)
+                areaDesenho.fillText("Computador - " + placarJogador2 + " pontos", larguraCampo - 250, 60)
             }
 
             function calcularPontuacao() {
@@ -136,7 +138,17 @@
                 posicaoBolaY = alturaCampo / 2;
                 velocidadeBolaX = -velocidadeBolaX;
                 velocidadeBolaY = 5;
+                nivelDificuldade();
             }
+
+            function nivelDificuldade() {
+
+                if ((placarJogador1 + placarJogador2) % 2 == 0 ) {
+                    velocidadeBolaX +=4;
+                    velocidadeJogador2 +=0.5;
+                }
+            }
+
         </script>
     </body>
 </html>
